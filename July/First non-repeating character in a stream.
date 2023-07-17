@@ -1,0 +1,26 @@
+class Solution{
+    public String FirstNonRepeating(String A){
+        char ch[] = A.toCharArray();
+	    int len=A.length();
+        List<Character> uniAlpha = new ArrayList<>();
+        List<Character> allAlpha = new ArrayList<>();
+        uniAlpha.add(ch[0]);
+        allAlpha.add(ch[0]);
+        for(int i=1; i<len; i++){
+            if(allAlpha.contains(ch[i])){
+                Character c = ch[i];
+                uniAlpha.remove(c);
+            }
+            else{
+                uniAlpha.add(ch[i]);
+                allAlpha.add(ch[i]);
+            }
+            if(!uniAlpha.isEmpty())
+                ch[i]=uniAlpha.get(0);
+            else
+                ch[i]='#';
+        }
+        A=A.valueOf(ch);
+	    return A;
+    }
+}
